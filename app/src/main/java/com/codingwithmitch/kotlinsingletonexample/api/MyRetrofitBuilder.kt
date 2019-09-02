@@ -13,6 +13,7 @@ object MyRetrofitBuilder {
             .addConverterFactory(GsonConverterFactory.create())
     }
 
+    return@lazy retrofitBuilder.create(ApiService::class.java)
 
 }
 
