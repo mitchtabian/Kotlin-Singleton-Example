@@ -20,6 +20,8 @@ class MainActivity : AppCompatActivity() {
         })
 
         viewModel.setUserId("1")
+
+        println("DEBUG: ExampleSingleton: ${ExampleSingleton}")
     }
 
 
