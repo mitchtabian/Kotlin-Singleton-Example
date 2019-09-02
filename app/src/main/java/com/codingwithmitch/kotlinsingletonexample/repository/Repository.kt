@@ -12,15 +12,6 @@ object Repository {
 
     var job: CompletableJob? = null
 
-    val apiService: ApiService by lazy {
-
-        MyRetrofitBuilder
-            .retrofitBuilder
-            .build()
-            .create(ApiService::class.java)
-    }
-
-
     fun getUser(userId: String): LiveData<User>{
         job = Job()
         return object: LiveData<User>(){
@@ -28,7 +19,7 @@ object Repository {
                 super.onActive()
                 job?.let{ theJob ->
                     CoroutineScope(IO + theJob).launch {
-                        val user = apiService.getUser(userId)
+                        val user = MyRetrofitBuilder.apiService.getUser(userId)
                         withContext(Main){
                             value = user
                             theJob.complete()
